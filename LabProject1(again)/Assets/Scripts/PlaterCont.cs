@@ -55,7 +55,7 @@ public class PlaterCont : MonoBehaviour
 
         roty = Mathf.Clamp(roty, -60f, 60f);
 
-        Vector3 movement = new Vector3(moveLR, 0, moveFB);
+        Vector3 movement = new Vector3(moveLR, 0, moveFB).normalized * movementSpeed;
 
         transform.Rotate(0, rotX, 0);
         cam.transform.localRotation = Quaternion.Euler(roty, 0, 0);
