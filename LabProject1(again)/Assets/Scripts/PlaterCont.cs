@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlaterCont : MonoBehaviour
 {
+    [Header("Object Refs")]
+    public GameObject gun;
+
     [Header("Movement")]
     public float speed;
     public float sensitivity;
@@ -13,6 +16,7 @@ public class PlaterCont : MonoBehaviour
     private float moveLR;
     private float rotX;
     private float roty;
+    private Weapon gunScript;
     private CharacterController cc;
     private Camera cam;
 
@@ -21,6 +25,7 @@ public class PlaterCont : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         cc = gameObject.GetComponent<CharacterController>();
         cam = gameObject.transform.GetChild(0).GetComponent<Camera>();
+        gunScript = gun.GetComponent<Weapon>();
     }
 
     private void Update()
@@ -28,6 +33,11 @@ public class PlaterCont : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            gunScript.Shoot();
         }
 
         Move();
