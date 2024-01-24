@@ -20,6 +20,10 @@ public class PlaterCont : MonoBehaviour
     private CharacterController cc;
     private Camera cam;
 
+    [Header("Gun Settings")]
+    [SerializeField] private int currentAmmo;
+    [SerializeField] private C4 c4;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -40,9 +44,20 @@ public class PlaterCont : MonoBehaviour
             gunScript.Shoot();
         }
 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            c4.TriggerC4();
+        }
+
         Move();
     }
 
+
+
+    public void PickUpAmmo(int amount)
+    {
+        currentAmmo += amount;
+    }
     public void Move()
     {
         float movementSpeed = speed;
