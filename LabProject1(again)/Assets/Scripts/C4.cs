@@ -2,24 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class C4 : MonoBehaviour
+public class C4 : MonoBehaviour, InventoryItem, IPickUpable
 {
     public float radius = 5f;
     public float power = 25;
 
     [SerializeField] ParticleSystem explosrion;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.gameObject.tag == "Player")
+        {
+            print("Player Entered");
+            PickUp(other.gameObject.GetComponent<PlaterCont>());
+        }
     }
 
     public void TriggerC4()
@@ -35,5 +31,15 @@ public class C4 : MonoBehaviour
                 thing.attachedRigidbody.AddExplosionForce(power, explodePosn, radius, 0.0f, ForceMode.Impulse);
             }
         }
+    }
+
+    public void PickUp(PlaterCont player)
+    {
+        player.AddToInventory(this);
+    }
+
+    public void Activate()
+    {
+        TriggerC4();
     }
 }

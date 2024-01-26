@@ -24,6 +24,10 @@ public class PlaterCont : MonoBehaviour
     [SerializeField] private int currentAmmo;
     [SerializeField] private C4 c4;
 
+    [Header("Inventory")]
+    public int inventoryIndex;
+    private List<InventoryItem> inventory = new List<InventoryItem>();
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -44,15 +48,40 @@ public class PlaterCont : MonoBehaviour
             gunScript.Shoot();
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetMouseButtonDown(1))
         {
-            c4.TriggerC4();
+            currentAmmo = gunScript.Reload(currentAmmo);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (inventory.Count > 0)
+            {
+                inventory[inventoryIndex].Activate();
+            }
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            inventoryIndex += 1;
+            if (inventoryIndex >= inventory.Count)
+            {
+                inventoryIndex = 0;
+            }
         }
 
         Move();
     }
 
-
+    public void AddToInventory(InventoryItem item)
+    {
+        if (!inventory.Contains(item))
+        {
+            print("Added " + item + " to inventory");
+            inventory.Add(item);
+        }
+    }
 
     public void PickUpAmmo(int amount)
     {

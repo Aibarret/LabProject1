@@ -2,12 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoPickup : MonoBehaviour, IPickUpable
+public class AmmoPickup : MonoBehaviour, IPickUpable, InventoryItem
 {
     [SerializeField] private int ammo;
-    public void PickUp(PlaterCont player)
+    private PlaterCont player;
+
+    public void Activate()
     {
         player.PickUpAmmo(ammo);
+    }
+
+    public void PickUp(PlaterCont player)
+    {
+        this.player = player;
+        player.AddToInventory(this);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -16,7 +25,7 @@ public class AmmoPickup : MonoBehaviour, IPickUpable
         {
             PickUp(other.gameObject.GetComponent<PlaterCont>());
 
-            GameObject.Destroy(gameObject);
+            
         }
     }
 

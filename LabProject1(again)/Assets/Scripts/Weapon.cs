@@ -7,6 +7,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected string gunName;
     [SerializeField] protected int currentBullets;
     [SerializeField] protected int maxBullets;
+    
 
     [SerializeField] protected GameObject bulletHole;
 
@@ -22,7 +23,7 @@ public abstract class Weapon : MonoBehaviour
         
     }
 
-    public void Shoot()
+    public virtual void Shoot()
     {
         if (currentBullets > 0)
         {
@@ -39,9 +40,13 @@ public abstract class Weapon : MonoBehaviour
                 decal.transform.position = worldPosition;
                 decal.transform.rotation = worldRotation;
 
-                currentBullets--;
+                
             }
+
+            currentBullets--;
         }
+
+        print("Shot Gun bullets at " + currentBullets);
     }
 
     public virtual int Reload(int rounds)
