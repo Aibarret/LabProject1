@@ -36,12 +36,12 @@ public class PlaterCont : MonoBehaviour
         gunScript = gun.GetComponent<Weapon>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Escape))
+/*        if (Input.GetKey(KeyCode.Tab))
         {
             Cursor.lockState = CursorLockMode.None;
-        }
+        }*/
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -73,6 +73,9 @@ public class PlaterCont : MonoBehaviour
 
         Move();
     }
+
+
+
 
     public void AddToInventory(InventoryItem item)
     {

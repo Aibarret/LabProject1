@@ -28,6 +28,7 @@ public abstract class Weapon : MonoBehaviour
         if (currentBullets > 0)
         {
             RaycastHit hit;
+            RaycastHit[] hits = Physics.RaycastAll(Camera.main.transform.position, Camera.main.transform.forward);
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
             {
                 GameObject decal = Instantiate(bulletHole, hit.point, Quaternion.identity);
@@ -39,14 +40,24 @@ public abstract class Weapon : MonoBehaviour
                 decal.transform.SetParent(hit.transform);
                 decal.transform.position = worldPosition;
                 decal.transform.rotation = worldRotation;
-
                 
+            }
+            foreach (RaycastHit coll in hits)
+            {
+                if (!coll.collider.isTrigger && hit.collider.tag == "Enemy")
+                {
+                    if (coll.collider.GetComponent<Enemy>())
+                    {
+                        coll.collider.GetComponent<Enemy>().takeDamage();
+                    }
+                    
+                }
             }
 
             currentBullets--;
         }
 
-        print("Shot Gun bullets at " + currentBullets);
+        //print("Shot Gun bullets at " + currentBullets);
     }
 
     public virtual int Reload(int rounds)
