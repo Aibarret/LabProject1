@@ -6,12 +6,15 @@ public static class Enums
 {
     public enum CharacterClass
     {
-
+        Paladin,
+        Ranger,
+        Wizard
     }
 
     public enum CharacterType
     {
-
+        Human,
+        Monster
     }
 
     public enum AbilityScoreNames
@@ -23,7 +26,13 @@ public static class Enums
         wisdom,
         charisma
 
-}
+    }
+
+    public enum AttackType
+    {
+        Attack,
+        Heal
+    }
 
 
 }
