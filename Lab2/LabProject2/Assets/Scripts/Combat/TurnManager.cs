@@ -24,6 +24,11 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        onBeginTurn();
+    }
+
 
     public void onBeginTurn()
     {

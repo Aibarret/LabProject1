@@ -299,6 +299,12 @@ MonoBehaviour:
   moveSpeed: 4
   rb: {fileID: 422139903}
   moveInput: {x: 0, y: 0}
+  spriteRend: {fileID: 422139905}
+  sprites:
+  - {fileID: 1988798480, guid: 99dd6db2f3351f340a46e01ab811bf52, type: 3}
+  - {fileID: 1084222732, guid: 1676cc5802db5d94f836c4826f7e28ec, type: 3}
+  - {fileID: -1458306766, guid: f7908334e3a419741acd85cf53d8792f, type: 3}
+  - {fileID: -1032147182, guid: 488980a666bc6a64f97b1d122379ca5b, type: 3}
   interactPhase: 0
 --- !u!50 &422139903
 Rigidbody2D:
@@ -363,7 +369,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2.25}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -413,7 +419,7 @@ SpriteRenderer:
   m_SortingLayerID: 1862200489
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 1988798480, guid: 99dd6db2f3351f340a46e01ab811bf52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

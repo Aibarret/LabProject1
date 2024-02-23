@@ -9,10 +9,19 @@ public class PlayerController : MonoBehaviour
     public int moveSpeed;
     public Rigidbody2D rb;
     public Vector2 moveInput;
+    public SpriteRenderer spriteRend;
+    public List<Sprite> sprites;
 
     [Header("Interact Variables")]
     public bool interactPhase = false;
 
+    private void Awake()
+    {
+        //GameManager.characters[0];
+        print((int)GameManager.characters[0].cClass);
+        spriteRend.sprite = sprites[(int)GameManager.characters[0].cClass];
+        GameManager.characters[0].playerPrefab = gameObject;
+    }
 
     private void Update()
     {

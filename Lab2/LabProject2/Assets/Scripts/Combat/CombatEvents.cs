@@ -10,7 +10,7 @@ public class CombatEvents : MonoBehaviour
     public UnityEvent<CombatCharacter> e_onBeginTurn;
     public UnityEvent<CombatCharacter> e_onEndTurn;
     public UnityEvent<CombatCharacter> e_onCharacterDie;
-    public UnityEvent<CombatCharacter> e_onHealthChange;
+    public UnityEvent e_onHealthChange;
 
     public void Awake()
     {
@@ -40,7 +40,7 @@ public class CombatEvents : MonoBehaviour
         }
         if (e_onHealthChange == null)
         {
-            e_onHealthChange = new UnityEvent<CombatCharacter>();
+            e_onHealthChange = new UnityEvent();
         }
     }
 }

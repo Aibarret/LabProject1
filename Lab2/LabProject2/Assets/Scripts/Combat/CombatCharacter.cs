@@ -23,7 +23,7 @@ public class CombatCharacter : MonoBehaviour
     {
         curHp -= damageToTake;
 
-        CombatEvents.instance.e_onHealthChange.Invoke(this);
+        CombatEvents.instance.e_onHealthChange.Invoke();
 
         if (curHp <= 0)
         {
@@ -42,7 +42,7 @@ public class CombatCharacter : MonoBehaviour
     {
         curHp += healAmount;
 
-        CombatEvents.instance.e_onHealthChange.Invoke(this);
+        CombatEvents.instance.e_onHealthChange.Invoke();
 
         if (curHp > maxHP)
         {
@@ -52,14 +52,15 @@ public class CombatCharacter : MonoBehaviour
 
     public void CastCombatAction(CombatActions combatAction)
     {
-        if (combatAction.Damage > 0)
-        {
-            StartCoroutine(AttackOpponent(combatAction));
-        }
-        else if (combatAction.ProjectilePrefab != null)
+        if (combatAction.ProjectilePrefab != null)
         {
             GameObject proj = Instantiate(combatAction.ProjectilePrefab, transform.position, Quaternion.identity);
+            proj.GetComponent<Projectile>().startAnimation(transform.position, opponent.transform.position, combatAction, onProjectileComplete);
 
+        }
+        else if (combatAction.Damage > 0)
+        {
+            StartCoroutine(AttackOpponent(combatAction));
         }
         else if (combatAction.HealAmount > 0)
         {
@@ -91,4 +92,14 @@ public class CombatCharacter : MonoBehaviour
         TurnManager.instance.EndTurn();
     }
 
+    public float getHealthPercentage()
+    {
+        return (float)(curHp / maxHP);
+    }
+
+    public void onProjectileComplete(CombatActions completedAction)
+    {
+        opponent.TakeDamage(completedAction.Damage);
+        TurnManager.instance.EndTurn();
+    }
 }

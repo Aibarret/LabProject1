@@ -7,8 +7,9 @@ public static class Enums
     public enum CharacterClass
     {
         Paladin,
-        Ranger,
-        Wizard
+        Mage,
+        Thief,
+        Cleric
     }
 
     public enum CharacterType

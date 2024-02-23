@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Character
 {
-    struct AbilityScores
+    public struct AbilityScores
     {
         public int strength;
         public int dexterity;
@@ -18,20 +18,20 @@ public class Character
 
     public string name;
 
-    private Enums.CharacterClass cClass;
+    public Enums.CharacterClass cClass;
     private Enums.CharacterType type;
     private Enums.AbilityScoreNames abilityScoreName;
     private AbilityScores stats;
 
-    private GameObject playerPrefab;
+    public GameObject playerPrefab;
 
-    Character(string name, GameObject player, Enums.CharacterClass cClass, Enums.CharacterType type, Enums.AbilityScoreNames abilityScoreName)
+    public Character(string name, GameObject player, Enums.CharacterClass cClass, Enums.CharacterType type, AbilityScores abilityScoreName)
     {
         this.name = name;
         playerPrefab = player;
         this.cClass = cClass;
         this.type = type;
-        this.abilityScoreName = abilityScoreName;
+        //this.abilityScoreName = abilityScoreName;
 
         stats = new AbilityScores();
     }

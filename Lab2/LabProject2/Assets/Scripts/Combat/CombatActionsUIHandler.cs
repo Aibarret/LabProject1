@@ -9,7 +9,7 @@ public class CombatActionsUIHandler : MonoBehaviour
     [SerializeField] private GameObject visualContainer;
     [SerializeField] private Button[] combatActionButtons;
 
-    private void Start()
+    private void Awake()
     {
         CombatEvents.instance.e_onBeginTurn.AddListener(onBeginTurn);
         CombatEvents.instance.e_onEndTurn.AddListener(onEndTurn);
@@ -17,6 +17,7 @@ public class CombatActionsUIHandler : MonoBehaviour
 
     public void onBeginTurn(CombatCharacter character)
     {
+        Debug.Log("Combat Actions UI Handler is Called");
         if (!character.isPlayer)
         {
             return;
